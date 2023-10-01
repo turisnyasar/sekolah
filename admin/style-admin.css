@@ -1,0 +1,102 @@
+/* css reset sederhana */
+* { margin:0; padding:0; 
+    box-sizing: border-box; }
+
+/* html dan body harus setinggi penuh bidang halaman */
+html, body {    height: 100%;
+                font-family: Arial; }
+
+.halaman { display: flex;
+           height: 100%; 
+           flex-direction: column; /* agar ke bawah */
+           justify-content: center;
+           align-items: center; }
+
+.tabel_login,
+ .tabel_login tr,
+ .tabel_login th,
+ .tabel_login td { border:1px solid black;
+                   border-collapse: collapse; }
+
+.tabel_login th,
+.tabel_login td { padding: 10px; }
+
+.tabel_login tr:nth-child(odd) 
+        { background-color: khaki; }
+
+.tabel_login tr:nth-child(even) 
+        { background-color:lightsalmon; }
+
+.tabel_login th { color: white;
+                  background-color: darkred; }
+ 
+        
+.kotak_pesan { background-color: yellow;
+               width: 50%;
+               padding: 1rem; 
+               border:1px solid orange; 
+               margin: 1rem; }
+
+header { height:40px; 
+         display: flex; 
+         justify-content: space-between;
+         align-items: center; 
+         padding: 0 10px;
+         background-color: goldenrod;}
+
+header h1 { font-size: 1.5rem; }
+header h2 { text-align: right; 
+            font-size:1.2rem;
+            font-weight: lighter; }
+
+.wadah_main { display: flex; height:100%; }
+
+nav {   width: 20%; 
+        background-color: darkred; }
+
+main {  width: 80%; 
+        background-color: aliceblue; 
+        padding: 1rem; }
+        
+.menu { list-style-type: none; }
+
+.menu>li { padding:10px; 
+           border-bottom: 1px solid white; }
+
+.menu>li:hover { background-color: coral;}
+
+.menu li a { color: white;
+             text-decoration: none; 
+             display: block; }
+
+.menu li ul { border-top: 1px solid white;
+        } 
+
+.menu li ul li { padding:10px;
+        background-color: rgb(180,0,0);
+        }
+
+.menu li ul li a::before { content:"\25b6";
+                           padding-right:5px; }
+
+fieldset { padding:1rem; 
+           border-radius:15px;
+           border:2px solid darkred; 
+           width: 90%; }
+
+legend { padding: 0.5rem; 
+         margin-left: 20px; }
+
+button { padding: 5px 20px; 
+         box-shadow:1px 1px 1px black; }
+
+
+
+
+
+
+
+
+
+
+

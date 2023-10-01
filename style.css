@@ -1,0 +1,74 @@
+* { margin:0; padding:0; }
+
+header { background-color: #96d3b3;
+         height: 100px; 
+         display: flex; }
+
+header div:nth-child(1) {  width: 120px; 
+                           display: flex;
+                           justify-content: center;
+                           align-items: center; }
+
+header div:nth-child(2) { display: flex;
+                          flex-direction: column;
+                          justify-content: center; }
+
+header div:nth-child(3) { flex: 1; }
+
+nav { background-color: #123d26;
+      height: 40px; }
+      
+nav ul { list-style-type: none; 
+         display: flex; }
+
+nav ul li { margin-left: 40px; 
+            height: 40px; 
+            display: flex;
+            align-items: center;}
+
+nav ul li a { color: white; 
+              text-decoration: none;
+              font-family: "trebuchet ms";}
+
+nav ul li a:hover { color: yellow; 
+                    font-weight: 900; }              
+
+/* isi css dari slide show */
+
+div#kerangka { border: 1px solid red;
+      box-sizing: border-box; }
+
+#frame { width: 640px;
+         height: 426px;
+         overflow:hidden; 
+         position: relative; } 
+         /* induknya dijadikan position:relative
+           supaya anaknya yang position:absolute
+           masih tetap berada di dalamnya */
+          
+#slide { width: auto; 
+         display:flex; 
+         position: absolute;  }
+      
+.item { width:640px; }
+
+.posisi1 { left: 0px; transition: 1s; }
+.posisi2 { left: -640px; transition: 1s; }
+.posisi3 { left: -1280px; transition: 1s; }
+.posisi4 { left: -1920px; transition: 1s; }
+
+.teks { position: absolute; 
+        width:640px;
+        background: rgba(0,0,0,0.5);
+        top:360px;
+        height:66px;
+        color:white;
+        padding:5px;
+        }
+
+
+
+
+
+
+
