@@ -83,3 +83,19 @@ function kiri() {
 
 setInterval( kiri, 2000 ) //dalam millisecond
 </script>
+
+<?php 
+
+include "admin/config.php";
+include "admin/functions";
+
+$sql = " SELECT kegiatan.ID_kegiatan,
+                kegiatan.judul_kegiatan,
+                foto_kegiatan.foto
+         FROM 
+         kegiatan LEFT JOIN foto_kegiatan
+         ON
+         kegiatan.ID_kegiatan = foto_kegiatan.ID_kegiatan 
+         GROUP BY
+         kegiatan.ID_kegiatan      
+        ";

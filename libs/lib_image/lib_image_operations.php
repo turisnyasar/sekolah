@@ -1,5 +1,6 @@
 <?php
 
+
 function crop_foto($upload_name, 
 					$target_width=640, 
 					$target_height=480,
@@ -9,6 +10,8 @@ function crop_foto($upload_name,
 	$type = substr($_FILES[$upload_name]["type"],6);	
 	$foto = $_FILES[$upload_name]["tmp_name"];
 	if ($nama == "") $nama = time();
+	else { $file = pathinfo($nama);
+								$nama = $file["filename"]; }
 	
 	list($lebar, $tinggi) = getimagesize($foto);
 	
@@ -34,12 +37,15 @@ function crop_foto($upload_name,
 	
 	$gambar_target = imagecreatetruecolor ($target_width, $target_height);
 	
-	if ($type == "png")
+	if ($type == "png") {
 		$gambar_sumber = imagecreatefrompng ($foto);
-	else 
-	if ($type == "jpeg")
+	 $nama = "$nama.png";
+	} else 
+	if ($type == "jpeg") {
 		$gambar_sumber = imagecreatefromjpeg ($foto);
-	
+	 $nama = "$nama.jpg";
+	}
+
 	$buat_gambar =  imagecopyresampled(
 		$gambar_target,
 		$gambar_sumber,
@@ -54,15 +60,11 @@ function crop_foto($upload_name,
 	);
 
 	
-	if ($type == "png") {
-		imagepng($gambar_target, "$dir/$nama.png");
-	}
-	else
-	if ($type == "jpeg") {
-		imagejpeg($gambar_target, "$dir/$nama.jpg");
-	}
+	imagejpeg($gambar_target, "$dir/$nama");
+	imagedestroy($gambar_sumber);
 	imagedestroy($gambar_target);
 
+	return $nama;
 }
 
 

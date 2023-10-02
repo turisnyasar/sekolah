@@ -37,6 +37,11 @@ if ( isset($_POST["judul"]) ) {
     //dikumpulkan setiap data foto
     $data_foto = array();
 
+    // setiap foto dalam sekali upload akan memakai
+    // nomor urut A,B,C dan seterusnya
+    // kode ASCII untuk A adalah 65
+    $huruf = 65;
+
     // setiap foto adalah item array di dalam
     // array besar $_FILES
     foreach ($_FILES as $key => $data) {
@@ -50,15 +55,27 @@ if ( isset($_POST["judul"]) ) {
         // ambil angka dari $key 
         $angka = substr($key, 4);
 
+      // susun nama untuk upload
+      $type = substr($data["type"], 6);
+      if ($type== "png") {
+        $nama_upload = chr($huruf) . "_" . time() . ".png";
+      }
+      else 
+      if ($type== "jpeg") {
+        $nama_upload = chr($huruf) . "_" . time() . ".jpg";
+      }
+      $huruf++;
+
       // panggil fungsi crop dari library
-      crop_foto( "foto$angka", 640, 426, "", "../upload");
+      crop_foto( "foto$angka", 
+                      640, 426, $nama_upload, "../upload");
 
         //maka captionnya adalah
         $cap = $_POST["caption".$angka];
 
         //tambahkan data foto ini ke $data_foto
         $data_foto[] =
-             "( $ID, '$data[name]', '$cap')";
+             "( $ID, '$nama_upload', '$cap')";
 
       }
 
