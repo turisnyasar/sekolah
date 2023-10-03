@@ -1,3 +1,37 @@
+<?php 
+
+include "admin/config.php";
+include "admin/functions.php";
+
+$sql = " SELECT kegiatan.ID_kegiatan,
+                kegiatan.judul_kegiatan,
+                foto_kegiatan.foto
+         FROM 
+         
+         -- inner join gunanya mengambil hanya yang ada
+         -- datanya di dalam kedua tabel
+         kegiatan INNER JOIN foto_kegiatan
+         ON
+         kegiatan.ID_kegiatan = foto_kegiatan.ID_kegiatan 
+
+         -- group by gunanya supaya setiap berita hanya
+         -- diwakili oleh satu ID saja, tidak ada duplikat
+         GROUP BY
+            kegiatan.ID_kegiatan
+
+         -- order by + desc gunanya supaya mengambil
+         -- ID berita yang terbaru
+         ORDER BY 
+            kegiatan.ID_kegiatan DESC
+
+         -- limit 0,4 gunanya membatasi hanya mengambil
+         -- 4 berita saja
+         LIMIT 0, 4  ";
+
+$hasil = get_data($sql);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,33 +62,19 @@
 
 
 <div id="frame">
-
 <div class="slide" id="slide">
-
+<?php 
+for ($i=0; $i<count($hasil); $i++) {
+    echo <<< KUTIP
     <div class="item">
         <div class="teks">
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi iste aperiam at facere sapiente sequi, excepturi cum eos fugit maxime? </div><!-- .teks -->
-        <img src="./slide/pic1.jpg">
+            {$hasil[$i]["judul_kegiatan"]} 
+        </div>
+        <img src="upload/{$hasil[$i]["foto"]}">
     </div><!-- .item -->
-
-    <div class="item">
-        <div class="teks">
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi iste aperiam at facere sapiente sequi, excepturi cum eos fugit maxime? </div><!-- .teks -->
-        <img src="slide/pic2.jpg">
-    </div><!-- .item -->
-
-    <div class="item">
-        <div class="teks">
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi iste aperiam at facere sapiente sequi, excepturi cum eos fugit maxime? </div><!-- .teks -->
-        <img src="slide/pic3.jpg">
-    </div><!-- .item -->
-
-    <div class="item">
-        <div class="teks">
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi iste aperiam at facere sapiente sequi, excepturi cum eos fugit maxime?  </div><!-- .teks -->
-    <img src="slide/pic4.jpg">
-    </div><!-- .item -->
-
+KUTIP;
+}
+?>
 </div><!-- #slide -->
 </div><!-- #frame -->
 
@@ -84,18 +104,3 @@ function kiri() {
 setInterval( kiri, 2000 ) //dalam millisecond
 </script>
 
-<?php 
-
-include "admin/config.php";
-include "admin/functions";
-
-$sql = " SELECT kegiatan.ID_kegiatan,
-                kegiatan.judul_kegiatan,
-                foto_kegiatan.foto
-         FROM 
-         kegiatan LEFT JOIN foto_kegiatan
-         ON
-         kegiatan.ID_kegiatan = foto_kegiatan.ID_kegiatan 
-         GROUP BY
-         kegiatan.ID_kegiatan      
-        ";

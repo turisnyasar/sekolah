@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2023 at 03:25 PM
+-- Generation Time: Oct 03, 2023 at 07:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,11 +62,11 @@ CREATE TABLE `foto_kegiatan` (
 --
 
 INSERT INTO `foto_kegiatan` (`ID`, `ID_kegiatan`, `foto`, `caption`) VALUES
-(1, 9, 'a.png', ''),
-(2, 9, 'Untitled.jpg', ''),
-(3, 11, 'a.png', ''),
-(4, 12, 'a.png', 'asdasdas'),
-(5, 13, 'IMG_20230114_201836.jpg', '');
+(1, 1, 'A_1696310089.jpg', '1'),
+(2, 1, 'B_1696310089.jpg', '2'),
+(3, 2, 'A_1696310171.jpg', ''),
+(4, 3, 'A_1696310216.jpg', '1'),
+(5, 4, 'A_1696310284.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -87,19 +87,10 @@ CREATE TABLE `kegiatan` (
 --
 
 INSERT INTO `kegiatan` (`ID_kegiatan`, `judul_kegiatan`, `artikel_kegiatan`, `tgl_upload`, `ID_admin`) VALUES
-(1, 'Lomba Cerdas Cermat', 'pada hari Minggu di halaman sekolah diadakan lomba cerdas cermat yang diikuti oleh 15 tim dari siswa kelas X.&nbsp;', '2023-09-24 18:13:47', 1),
-(2, 'sdfsfd', 'sdfsdfsdf', '2023-09-26 05:26:39', 1),
-(3, 'sdfsfd', 'sdfsdfsdf', '2023-09-26 05:26:54', 1),
-(4, 'sdfsfd', 'sdfsdfsdf', '2023-09-26 05:33:55', 1),
-(5, 'asdasd', 'Judul Kegiatan', '2023-09-26 05:51:48', 1),
-(6, 'dfgdfgf', 'dfgdfgdfg', '2023-09-26 06:37:26', 1),
-(7, 'dgdgdf', 'gdfdfgdfg', '2023-09-26 06:40:00', 1),
-(8, 'sdf', 'sdfsdfs', '2023-09-26 06:47:13', 1),
-(9, 'sdf', 'sdfsdfs', '2023-09-26 06:47:48', 1),
-(10, '4456456', '456456', '2023-09-26 07:01:10', 1),
-(11, 'sdfsdfsd', 'sdfsdf', '2023-09-27 06:10:55', 1),
-(12, 'asdasdasd', 'asdasdas', '2023-09-27 07:16:48', 1),
-(13, 'sdfsdfsd', 'sdfsdfsdf', '2023-09-29 05:59:27', 1);
+(1, 'Belajar bersama', 'Sekelompok murid sedang belajar bersama', '2023-10-03 07:14:49', 1),
+(2, 'guru silat sedang menerangkan pelajaran', 'guru silat sedang menerangkan pelajaran', '2023-10-03 07:16:11', 1),
+(3, 'kungfu terbang sedang berkelahi', 'kungfu terbang sedang berkelahi', '2023-10-03 07:16:56', 1),
+(4, 'ustadz kucing sedang tausiah', 'ustadz kucing sedang tausiah', '2023-10-03 07:18:04', 1);
 
 --
 -- Indexes for dumped tables
@@ -146,7 +137,7 @@ ALTER TABLE `foto_kegiatan`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `ID_kegiatan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID_kegiatan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -26,6 +26,7 @@ if ( isset($_POST["judul"]) ) {
     $ID = mysqli_insert_id($koneksi);
     // echo "ID data ini adalah $ID<hr>";
 
+
     //mula-mula sediakan bagian awal SQL simpan
     //fotonya sebelum nanti ditambahkan
     // foto dari looping
@@ -42,6 +43,9 @@ if ( isset($_POST["judul"]) ) {
     // kode ASCII untuk A adalah 65
     $huruf = 65;
 
+    // persiapkan status $ada_foto;
+    $ada_foto = false;
+
     // setiap foto adalah item array di dalam
     // array besar $_FILES
     foreach ($_FILES as $key => $data) {
@@ -51,6 +55,9 @@ if ( isset($_POST["judul"]) ) {
       
       //mencari yang name nya tidak kosong
       if ($data["name"] != "") {
+
+        //ubah status $ada_foto
+        $ada_foto = true;
 
         // ambil angka dari $key 
         $angka = substr($key, 4);
@@ -81,8 +88,11 @@ if ( isset($_POST["judul"]) ) {
 
     }
 
-    $sql2 .= join(",", $data_foto);
-    $hasil2 = run_query ($sql2);
+    if ($ada_foto) {
+      $sql2 .= join(",", $data_foto);
+      $hasil2 = run_query ($sql2);
+    }
+    
     $_SESSION["pesan"] = "Data tersimpan";
     header("location: kegiatan-tambah.php");
 }
