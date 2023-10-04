@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2023 at 07:19 AM
+-- Generation Time: Oct 04, 2023 at 07:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -90,7 +90,9 @@ INSERT INTO `kegiatan` (`ID_kegiatan`, `judul_kegiatan`, `artikel_kegiatan`, `tg
 (1, 'Belajar bersama', 'Sekelompok murid sedang belajar bersama', '2023-10-03 07:14:49', 1),
 (2, 'guru silat sedang menerangkan pelajaran', 'guru silat sedang menerangkan pelajaran', '2023-10-03 07:16:11', 1),
 (3, 'kungfu terbang sedang berkelahi', 'kungfu terbang sedang berkelahi', '2023-10-03 07:16:56', 1),
-(4, 'ustadz kucing sedang tausiah', 'ustadz kucing sedang tausiah', '2023-10-03 07:18:04', 1);
+(4, 'ustadz kucing sedang tausiah', 'ustadz kucing sedang tausiah', '2023-10-03 07:18:04', 1),
+(5, 'Berita belum ada isi', 'Entah apa isinya saya pun tidak tahu', '2023-10-04 06:34:09', 1),
+(6, 'Belum ada Judul', 'Ini bukan berita. Ini lagu Iwan Fals.', '2023-10-04 06:34:30', 1);
 
 --
 -- Indexes for dumped tables
@@ -137,7 +139,7 @@ ALTER TABLE `foto_kegiatan`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `ID_kegiatan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_kegiatan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

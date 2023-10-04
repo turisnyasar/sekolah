@@ -67,8 +67,29 @@ div#kerangka { border: 1px solid red;
         }
 
 
+main { display: flex; 
+       justify-content: space-between; }
 
+aside { width: 350px; background:#80c0b0;
+        height: 100%; }
 
+.widget { margin: 10px; border-radius: 10px;
+          border:1px solid #123d26; 
+          overflow: hidden;}
 
+.widget h2 { background:black; 
+             color:white;
+             padding:5px; 
+             font-family:Tahoma; }
+
+.daftar_link { list-style-type: none; }
+.daftar_link li { background:#96d3b3; }
+.daftar_link li a { display:block;
+                    padding:5px 10px; 
+                    text-decoration: none;
+                    color:black; }
+.daftar_link li a:hover { 
+             background-color: #123d26;
+             color:white; }   
 
 

@@ -3,6 +3,10 @@
 include "admin/config.php";
 include "admin/functions.php";
 
+/////////////////////////////////
+// mengambil data gambar untuk slideshow
+////////////////////////////////
+
 $sql = " SELECT kegiatan.ID_kegiatan,
                 kegiatan.judul_kegiatan,
                 foto_kegiatan.foto
@@ -30,36 +34,22 @@ $sql = " SELECT kegiatan.ID_kegiatan,
 
 $hasil = get_data($sql);
 
+/////////////////////////////////
+// mengambil 5 berita kegiatan terakhir
+////////////////////////////////
 
+$sql2 = " SELECT ID_kegiatan,
+                 judul_kegiatan
+          FROM kegiatan
+          ORDER BY ID_kegiatan DESC
+          LIMIT 0,5 ";
+$hasil2 = get_data($sql2);
+
+
+include "header.php";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMK Tenka Ichi Budokai</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-<header>
-    <div><img src="images/logo.png"></div>
-    <div>
-        <h1>SMK TENKA ICHI BUDOKAI</h1>
-        <h3>Jln. Hatihati Banyak Anak-anak No. 2</h3>
-        </div>
-    <div></div>
-</header>
 
-<nav>
- <ul>
-    <li><a href="">Beranda</a></li>
-    <li><a href="">Kegiatan Sekolah</a></li>
-    <li><a href="">Profil</a></li>
- </ul>
-</nav>
-
-
+<main>
 
 <div id="frame">
 <div class="slide" id="slide">
@@ -79,7 +69,34 @@ KUTIP;
 </div><!-- #frame -->
 
 
+<aside>
+  
+ <div class='widget'>
+   <h2>5 Kegiatan Terakhir</h2>
+   <ul class='daftar_link'>
+<?php
+for($i=0; $i<count($hasil2); $i++) {
+    $id_kegiatan = $hasil2[$i]["ID_kegiatan"];
+    $judul = $hasil2[$i]["judul_kegiatan"];
+    echo "<li>
+    <a href='kegiatan.php?id=$id_kegiatan'>
+    $judul</a></li> ";
+}
+?>
+   </ul>
+ </div>
 
+ <div class='widget'>
+  <h2>Pengumuman</h2>
+ </div>
+
+ <div class='widget'>
+  <h2>Link Terkait</h2>
+ </div>
+
+</aside>
+
+</main>
 
 </body>
 </html>
