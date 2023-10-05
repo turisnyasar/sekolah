@@ -122,5 +122,15 @@ function buat_tabel( $class, $judul, $array ) {
     echo $hasil;
 }
 
-
-
+/**
+ * fungsi untuk mencetak foto ke html
+ * @param (string $namaimage)
+ */
+function cetak_foto($gambar) {
+    echo "<blockquote>
+    <a href='upload/$gambar' 
+       target='_blank'>
+    <img src='upload/$gambar' width='400'>
+    </a>
+    </blockquote>";
+}

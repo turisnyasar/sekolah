@@ -79,7 +79,7 @@ for($i=0; $i<count($hasil2); $i++) {
     $id_kegiatan = $hasil2[$i]["ID_kegiatan"];
     $judul = $hasil2[$i]["judul_kegiatan"];
     echo "<li>
-    <a href='kegiatan.php?id=$id_kegiatan'>
+    <a href='kegiatan.php?id=$id_kegiatan'>   
     $judul</a></li> ";
 }
 ?>

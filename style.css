@@ -70,6 +70,17 @@ div#kerangka { border: 1px solid red;
 main { display: flex; 
        justify-content: space-between; }
 
+main section {
+      padding: 1rem;
+      text-align: justify;
+} 
+blockquote { padding:0.5rem; 
+             text-align: center; }
+section h1 { padding: 0.5rem; 
+             text-transform: uppercase;
+             font-family: Impact; }
+section p { margin: 1rem 0; }
+
 aside { width: 350px; background:#80c0b0;
         height: 100%; }
 
@@ -82,9 +93,24 @@ aside { width: 350px; background:#80c0b0;
              padding:5px; 
              font-family:Tahoma; }
 
-.daftar_link { list-style-type: none; }
+.daftar_link { 
+  list-style: none;
+ }
 .daftar_link li { background:#96d3b3; }
-.daftar_link li a { display:block;
+.daftar_link li::before {
+    content: '';
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    background-size: cover;
+    background-image: url('images/icon-news.png');
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+.daftar_link li a { display:inline-block;
                     padding:5px 10px; 
                     text-decoration: none;
                     color:black; }
@@ -92,4 +118,7 @@ aside { width: 350px; background:#80c0b0;
              background-color: #123d26;
              color:white; }   
 
+
+/* .daftar_link li a::before { 
+             content: "\1F4F0 "; } */
 

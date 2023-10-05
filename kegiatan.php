@@ -2,15 +2,21 @@
 include "admin/config.php";
 include "admin/functions.php";
 
-/////////////////////////////////
-// mengambil 20 berita kegiatan terakhir
-////////////////////////////////
+// $p adalah nomor halaman saat ini. Didapat
+// dari URL yang diminta
+$p = isset($_GET['p'])? $_GET['p'] : 1;
+
+//$limit dan $start adalah untuk menentukan
+// dimulai dari mana dan sampai mana 
+// data dari database yang mau diambil
+$limit = 3;
+$start = ($p-1) * $limit;
 
 $sql2 = " SELECT ID_kegiatan,
                  judul_kegiatan
           FROM kegiatan
           ORDER BY ID_kegiatan DESC
-          LIMIT 0,20 ";
+          LIMIT $start, $limit ";
 $hasil2 = get_data($sql2);
 
 
@@ -21,13 +27,36 @@ include "header.php";
 <?php 
 // ketika ada id diminta
 if (isset($_GET["id"])) {
+
  $id = $_GET["id"];
  $sql3 = " SELECT * FROM kegiatan
            WHERE ID_kegiatan = $id";
  $hasil3 = get_data($sql3);
  $berita = $hasil3[0];
- echo "<h1>$berita[judul_kegiatan]</h1>
- <div>$berita[artikel_kegiatan]</div> ";
+
+ $sql4 = " SELECT * FROM foto_kegiatan
+           WHERE ID_kegiatan = $id";
+ $listfoto = get_data($sql4);
+
+ echo "<h1>$berita[judul_kegiatan]</h1>";
+
+ if (isset($listfoto[0])){ 
+  $gambar = $listfoto[0]['foto'];
+  cetak_foto( $gambar );
+ }
+
+ echo "<div>$berita[artikel_kegiatan]</div> ";
+
+ // kalau ada foto ke-2, ke-3, dst...
+ if (count($listfoto)>1) {
+
+  // foto ke-2 dimulai dari index=1
+  for ($i=1; $i<count($listfoto); $i++) {
+    $gambar = $listfoto[$i]['foto'];
+    cetak_foto( $gambar );
+  }
+ }
+
 }
 ?>
 
@@ -48,6 +77,13 @@ for($i=0; $i<count($hasil2); $i++) {
 }
 ?>
    </ul>
+
+<?php 
+$next_p = $p + 1;
+echo "<a href='kegiatan.php?p=$next_p'>
+      Berikutnya </a>";
+?>
+
  </div>
 
  <div class='widget'>
