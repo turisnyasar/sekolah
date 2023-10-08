@@ -73,15 +73,17 @@ main { display: flex;
 main section {
       padding: 1rem;
       text-align: justify;
+      max-width: 70%;
 } 
 blockquote { padding:0.5rem; 
              text-align: center; }
 section h1 { padding: 0.5rem; 
              text-transform: uppercase;
-             font-family: Impact; }
+             font-family: 'Roboto', sans-serif;
+             }
 section p { margin: 1rem 0; }
 
-aside { width: 350px; background:#80c0b0;
+aside { width: 30%; background:#80c0b0;
         height: 100%; }
 
 .widget { margin: 10px; border-radius: 10px;
@@ -122,3 +124,18 @@ aside { width: 350px; background:#80c0b0;
 /* .daftar_link li a::before { 
              content: "\1F4F0 "; } */
 
+.tombol { 
+      display: inline-block;
+      background-color: #aaa;
+      color: black; 
+      font-weight: 900;
+      font-family: Arial;
+      padding: 3px 20px;
+      box-shadow: 1px 1px 0 black;
+      text-decoration: none;
+      margin:10px;
+      border-left: 1px solid white;
+      border-top: 1px solid white;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+}

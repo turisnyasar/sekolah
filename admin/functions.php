@@ -128,9 +128,8 @@ function buat_tabel( $class, $judul, $array ) {
  */
 function cetak_foto($gambar) {
     echo "<blockquote>
-    <a href='upload/$gambar' 
-       target='_blank'>
-    <img src='upload/$gambar' width='400'>
+    <a href=\"javascript:buka_popup('upload/$gambar')\">
+    <img src='upload/$gambar' width='50%'>
     </a>
     </blockquote>";
 }

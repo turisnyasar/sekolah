@@ -9,7 +9,7 @@ $p = isset($_GET['p'])? $_GET['p'] : 1;
 //$limit dan $start adalah untuk menentukan
 // dimulai dari mana dan sampai mana 
 // data dari database yang mau diambil
-$limit = 3;
+$limit = 20;
 $start = ($p-1) * $limit;
 
 $sql2 = " SELECT ID_kegiatan,
@@ -19,7 +19,17 @@ $sql2 = " SELECT ID_kegiatan,
           LIMIT $start, $limit ";
 $hasil2 = get_data($sql2);
 
+// cari total data dalam database
+$sql_total = " SELECT COUNT(*) AS totaldata
+               FROM kegiatan ";
+$hasil_total = get_data($sql_total);
+//print_r ($hasil_total); exit;
+$total = $hasil_total[0]["totaldata"];
+// mencari total halaman
+$total_halaman = ceil($total / $limit);
 
+
+/////////////////////
 include "header.php";
 ?>
 <main>
@@ -40,6 +50,7 @@ if (isset($_GET["id"])) {
 
  echo "<h1>$berita[judul_kegiatan]</h1>";
 
+//kalau ada foto ke-1, maka cetak langsung di bawah judul
  if (isset($listfoto[0])){ 
   $gambar = $listfoto[0]['foto'];
   cetak_foto( $gambar );
@@ -57,7 +68,7 @@ if (isset($_GET["id"])) {
   }
  }
 
-}
+}// tutup if isset get[id]
 ?>
 
 </section>
@@ -79,9 +90,32 @@ for($i=0; $i<count($hasil2); $i++) {
    </ul>
 
 <?php 
+////////// untuk tombol previous /////////////
+if ($p > 1) {
+  $prev_p = $p - 1;
+  $href = "kegiatan.php?p=$prev_p";
+}
+else { 
+  $href = "";
+}
+echo "<a href='$href' class='tombol'>
+      &laquo; </a>";
+
+echo " || "; // pemisah tombol (separator)
+
+////////// untuk tombol next /////////////////
 $next_p = $p + 1;
-echo "<a href='kegiatan.php?p=$next_p'>
-      Berikutnya </a>";
+
+// kalau $next_p sudah melewati halaman terakhir
+if ($next_p > $total_halaman) 
+   // matikan href
+   $href = "";
+else 
+   // hidupkan href
+   $href = "kegiatan.php?p=$next_p";
+
+echo "<a href='$href' class='tombol'>
+      &raquo; </a>";
 ?>
 
  </div>
