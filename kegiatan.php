@@ -9,7 +9,7 @@ $p = isset($_GET['p'])? $_GET['p'] : 1;
 //$limit dan $start adalah untuk menentukan
 // dimulai dari mana dan sampai mana 
 // data dari database yang mau diambil
-$limit = 20;
+$limit = 2;
 $start = ($p-1) * $limit;
 
 $sql2 = " SELECT ID_kegiatan,
@@ -35,20 +35,32 @@ include "header.php";
 <main>
 <section>
 <?php 
+// ketika tidak ada id diminta
+// otomatis membuka berita pertama dalam halaman tersebut
+if (!isset($_GET["id"])) {
+  $start_limit = ($p-1) * $limit;
+  $sql3 = " SELECT * FROM kegiatan
+            ORDER BY ID_kegiatan DESC
+            LIMIT $start_limit, 1";
+ $hasil3 = get_data($sql3);
+ $berita = $hasil3[0]; 
+ $id = $berita["ID_kegiatan"];           
+} else
+
 // ketika ada id diminta
 if (isset($_GET["id"])) {
-
  $id = $_GET["id"];
- $sql3 = " SELECT * FROM kegiatan
-           WHERE ID_kegiatan = $id";
+ $sql3 = " SELECT * FROM kegiatan WHERE ID_kegiatan = $id";
  $hasil3 = get_data($sql3);
- $berita = $hasil3[0];
+ $berita = $hasil3[0];           
+}
+
 
  $sql4 = " SELECT * FROM foto_kegiatan
            WHERE ID_kegiatan = $id";
  $listfoto = get_data($sql4);
 
- echo "<h1>$berita[judul_kegiatan]</h1>";
+ echo "<h1>$berita[judul_kegiatan] <br>ID=$id</h1>";
 
 //kalau ada foto ke-1, maka cetak langsung di bawah judul
  if (isset($listfoto[0])){ 
@@ -68,8 +80,41 @@ if (isset($_GET["id"])) {
   }
  }
 
-}// tutup if isset get[id]
+
 ?>
+
+<hr>
+
+<a class="tombol" href="kegiatan.php?p=1">&#x23ee;</a>
+
+<?php
+
+// membuat mulai jump
+if ($p <= 2) { 
+  $mulai_jump = 1;    $akhir_jump = 3; 
+  $mulai_titik = "";    $akhir_titik = "..."; }
+
+else  // untuk di tengah jump
+if ($p>1 && $p+1 < $total_halaman) {
+  $mulai_jump = $p-1;    $akhir_jump = $p+1; 
+  $mulai_titik = "...";    $akhir_titik = "..."; }
+
+else   // untuk di ujung jump
+if ($p >= $total_halaman - 1) {
+  $mulai_jump = $p-1;   $akhir_jump = $total_halaman; 
+  $mulai_titik = "...";   $akhir_titik = ""; }
+ 
+//////////
+echo $mulai_titik;  
+for( $i=$mulai_jump; $i<=$akhir_jump; $i++) {
+   echo "<a class='tombol' 
+            href='kegiatan.php?p=$i'>$i</a> ";
+}
+echo $akhir_titik;
+?>
+
+<a class="tombol" 
+ href="kegiatan.php?p=<?= $total_halaman ?>">&#x23ed;</a> 
 
 </section>
 
@@ -84,7 +129,7 @@ for($i=0; $i<count($hasil2); $i++) {
     $judul = $hasil2[$i]["judul_kegiatan"];
     echo "<li>
     <a href='kegiatan.php?id=$id_kegiatan'>
-    $judul</a></li> ";
+    ($id_kegiatan) $judul</a></li> ";
 }
 ?>
    </ul>

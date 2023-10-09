@@ -73,7 +73,7 @@ main { display: flex;
 main section {
       padding: 1rem;
       text-align: justify;
-      max-width: 70%;
+      flex: 1;     
 } 
 blockquote { padding:0.5rem; 
              text-align: center; }
