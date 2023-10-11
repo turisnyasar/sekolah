@@ -22,12 +22,19 @@ function get_kegiatan() {
  // untuk data tabel
  if (count($hasil) > 0) {
   for ($i=0; $i<count($hasil); $i++) {
+
+    // persiapkan tombol edit
+    $id_edit = $hasil[$i]['ID_kegiatan'];
+    $tombol_edit = "<a class='tombol'
+       href='kegiatan-edit.php?id=$id_edit'>
+       Edit</a>";
+
    // susun item dalam setiap baris tabel
    $item = array( 
      $hasil[$i]["judul_kegiatan"] ,
      $hasil[$i]["tgl_upload"] ,
      $hasil[$i]["display_name"] ,
-     "Edit - Delete"
+     "$tombol_edit - Delete"
     );
     // lalu masukkan item baris tersebut ke array
     $array[] = $item;

@@ -60,21 +60,21 @@ main {  width: 80%;
         
 .menu { list-style-type: none; }
 
-.menu>li { padding:10px; 
+.menu>li { /* padding:10px; */
            border-bottom: 1px solid white; }
 
 .menu>li:hover { background-color: coral;}
 
 .menu li a { color: white;
              text-decoration: none; 
-             display: block; }
+             display: block; padding: 10px;}
 
-.menu li ul { border-top: 1px solid white;
-        } 
+.menu li ul { border-top: 1px solid white; } 
 
-.menu li ul li { padding:10px;
-        background-color: rgb(180,0,0);
-        }
+.menu li ul li { /* padding:10px; */
+        background-color: rgb(180,0,0); }
+.menu li ul li:hover {
+        background-color: rgb(240, 80, 80);}
 
 .menu li ul li a::before { content:"\25b6";
                            padding-right:5px; }
@@ -91,11 +91,32 @@ button { padding: 5px 20px;
          box-shadow:1px 1px 1px black; }
 
 
+/*  */
+main h3 { margin: 1.5rem 0 0 0;
+          font-size: 1.5rem;
+          font-weight: 900; }
 
+.div_foto { margin:10px; }
 
+.div_foto * { display: block; }
 
+.div_foto input[type=text] { width: 100%; }
 
-
+.tombol {
+        display: inline-block;
+        background-color: #aaa;
+        color: black;
+        font-weight: 900;
+        font-family: Arial;
+        padding: 3px 20px;
+        box-shadow: 1px 1px 0 black;
+        text-decoration: none;
+        margin: 10px;
+        border-left: 1px solid white;
+        border-top: 1px solid white;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+}
 
 
 

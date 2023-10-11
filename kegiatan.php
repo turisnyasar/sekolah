@@ -60,7 +60,7 @@ if (isset($_GET["id"])) {
            WHERE ID_kegiatan = $id";
  $listfoto = get_data($sql4);
 
- echo "<h1>$berita[judul_kegiatan] <br>ID=$id</h1>";
+ echo "<h1>$berita[judul_kegiatan]</h1>";
 
 //kalau ada foto ke-1, maka cetak langsung di bawah judul
  if (isset($listfoto[0])){ 
@@ -129,7 +129,7 @@ for($i=0; $i<count($hasil2); $i++) {
     $judul = $hasil2[$i]["judul_kegiatan"];
     echo "<li>
     <a href='kegiatan.php?id=$id_kegiatan'>
-    ($id_kegiatan) $judul</a></li> ";
+    $judul</a></li> ";
 }
 ?>
    </ul>

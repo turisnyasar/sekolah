@@ -68,6 +68,8 @@ function tambah_upload() {
 function tambah_upload() {
   // mula-mula buat element div
   let uploadan = document.createElement("div")
+  uploadan.className = "div_foto";
+  
   //1. label dulu
   a = document.createElement("label")
   a.innerHTML = "Upload foto " + no_urut
