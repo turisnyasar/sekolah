@@ -19,8 +19,28 @@ $sql = " SELECT * FROM kegiatan
 $hasil = get_data($sql);
 $data = $hasil[0];
 
+//// mengumpulkan foto
+$daftar_foto = array();
+
+$sql_foto = " SELECT * FROM foto_kegiatan
+              WHERE ID_kegiatan = $id ";
+
+$hasil = get_data ($sql_foto);
+
+/////////////////////////
 include "header.php";
 ?>
+
+<script>
+buang_foto = []
+function clear_foto(idfoto) {
+  target_div = document.getElementById('foto_' + idfoto)
+  target_div.style.display = "none"
+  buang_foto.push(idfoto)
+  foto_hapus.value = buang_foto.toString()
+}
+</script>
+
 <main>
 <h1>Edit Berita Kegiatan Sekolah</h1>
 <?php 
@@ -28,8 +48,17 @@ tampil_pesan();
 // get_kegiatan();
 ?>
 
+<form 
+action="kegiatan-edit-simpan.php?x=<?=$id?>"
+      method="post"
+      enctype="multipart/form-data">
+
+<!-- setiap form edit harus menyertakan ID di dalamnya -->      
+<input type="hidden" name="ID" 
+       value="<?= $id ?>">
+
 <fieldset>
-<legend>Form Tambah Kegiatan</legend>
+<legend>Form Edit Kegiatan</legend>
 <table class="tabel_login">
   <tr>
     <td><label>Judul Kegiatan</label><br>
@@ -48,9 +77,28 @@ tampil_pesan();
 </table>
 </fieldset>
 
+<?php 
+// looping pada daftar foto dari database
+// dan tampilkan dengan tombol hapus
+for ($i=0; $i<count($hasil); $i++){
+  
+  $id_foto = $hasil[$i]["ID"];
+  $foto = $hasil[$i]["foto"];
 
+  echo "<DIV class='list_foto' 
+             id='foto_{$id_foto}'>
+  <img src='../upload/$foto' width='128'>
+  <a href='javascript:clear_foto($id_foto)'
+     class='tombol'>X</a>
+  </DIV>";
+}
+?>
+
+<input type="hidden" name="foto_hapus"
+       id="foto_hapus">
+</form>
 </main>
-
 </div> <!-- tutup .wadah_main -->
 </body>
 </html>
+
