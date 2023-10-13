@@ -17,3 +17,12 @@ get_kegiatan();
 </div> <!-- tutup .wadah_main -->
 </body>
 </html>
+
+<script>
+function hapus(id_dihapus) {
+ konfirm = confirm("Hapus kegiatan ini?")
+ if (konfirm) {
+  document.location="kegiatan-hapus.php?id=" + id_dihapus
+ }
+}
+ </script>

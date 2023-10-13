@@ -96,6 +96,9 @@ for ($i=0; $i<count($hasil); $i++){
 
 <input type="hidden" name="foto_hapus"
        id="foto_hapus">
+
+<?php include "form_foto.php"; ?>
+
 </form>
 </main>
 </div> <!-- tutup .wadah_main -->
